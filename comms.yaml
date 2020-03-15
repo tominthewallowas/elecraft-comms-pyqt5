@@ -1,0 +1,135 @@
+Ports:
+    'Bogus Rig 1':
+        - /dev/ttyUSB1
+        - 38400
+    'Bogus Rig 2':
+        - /dev/ttyV01
+        - 38400
+    'KX3':
+        - /dev/ttyUSB0
+        - 38400
+
+Misc:
+    max_buttons_per_row:
+        4
+
+Command Sequences:
+    SETDATAMODE:
+        - DATAMODE
+        - DATASUBMODEA
+        - POWER50
+        - AMPSTANDBY
+    SETMARS:
+        - AMPOPERATE
+        - POWER20
+        - PTT
+        - USB
+    DUMMYLOAD:
+        - DUMMYLOAD
+    ANTENNA1:
+        - ANTENNA1
+    TESTTOGGLE:
+        - TESTTOGGLE
+    ATUTUNE:
+        - ATUTUNE
+    TUNE:
+        - TUNE
+    R82:
+        - R82
+        - USB
+    VOX:
+        - VOX
+
+Commands:
+    DATAMODE:
+        - K3S
+        - MD6;
+    POWER50:
+        - K3S
+        - PC050;
+    POWER20:
+        - K3S
+        - PC020;
+    AMPSTANDBY:
+        - KPA500
+        - ^OS0;
+    AMPOPERATE:
+        - KPA500
+        - ^OS1;
+    USB:
+        - K3S
+        - MD2;
+    VOX:
+        - K3S
+        - SWH09;
+    PTT:
+        - K3S
+        - SWH09;
+    DATASUBMODEA:
+        - K3S
+        - DT0;
+    DUMMYLOAD:
+        - KAT500
+        - AN2;
+    ANTENNA1:
+        - KAT500
+        - AN1;
+    TESTTOGGLE:
+        - K3S
+        - SWH18;
+    ATUTUNE:
+        - K3S
+        - SWT19;
+    TUNE:
+        - K3S
+        - SWH16;
+    R82:
+        - K3S
+        - FA00004025000;
+
+Button Labels:
+    "&Data Mode":
+        - True
+        - 1
+        - SETDATAMODE
+        - N
+    "&MARS Mode":
+        - True
+        - 2
+        - SETMARS
+        - N
+    "&Toggle Test":
+        - True
+        - 4
+        - TESTTOGGLE
+        - Y
+    D&ummy Load:
+        - True
+        - 5
+        - DUMMYLOAD
+        - N
+    "&Antenna 1":
+        - True
+        - 6
+        - ANTENNA1
+        - N
+    ATU Tu&ne:
+        - True
+        - 7
+        - ATUTUNE
+        - N
+    Tun&e:
+        - True
+        - 8
+        - TUNE
+        - N
+    R8&2:
+        - True
+        - 9
+        - R82
+        - N
+    "&VOX":
+        - True
+        - 10
+        - VOX
+        - Y

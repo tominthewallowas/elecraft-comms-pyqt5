@@ -1,0 +1,3 @@
+Elecraft Comms is program to control an Elecraft radio.
+This version uses the PyQt5 library for the GUI because
+PySide2 has yet to be ported to Raspian.
