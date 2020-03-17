@@ -1,0 +1,14 @@
+Issue 02
+3/17/2020
+Author: tom
+Discussion:
+
+Add a mechanism to catch errors and display them to the user with a possible solution.
+
+This was included in Issue 01 but not solved.
+
+Possible solution is to have a listener that will monitor a location for errors to show up and then handle the display.
+
+Another possible solution is to have a return type of error that the calling program handles.
+
+I kind of like the first solution because then an error does not have to be pushed up through several layers.
