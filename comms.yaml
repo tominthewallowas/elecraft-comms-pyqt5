@@ -1,12 +1,12 @@
 Ports:
-    'Bogus Rig 1':
-        - /dev/ttyUSB1
-        - 38400
-    'Bogus Rig 2':
+    'K3S':
         - /dev/ttyV01
         - 38400
-    'KX3':
-        - /dev/ttyUSB0
+    'KPA500':
+        - /dev/ttyUSB1
+        - 38400
+    'KAT500':
+        - /dev/ttyUSB2
         - 38400
 
 Misc:
@@ -19,11 +19,6 @@ Command Sequences:
         - DATASUBMODEA
         - POWER50
         - AMPSTANDBY
-    SETMARS:
-        - AMPOPERATE
-        - POWER20
-        - PTT
-        - USB
     DUMMYLOAD:
         - DUMMYLOAD
     ANTENNA1:
@@ -34,22 +29,49 @@ Command Sequences:
         - ATUTUNE
     TUNE:
         - TUNE
-    R82:
-        - R82
-        - USB
     VOX:
         - VOX
+    AMPOPERATE:
+        - AMPOPERATE
+    AMPSTANDBY:
+        - AMPSTANDBY
+    POWER10:
+        - POWER10
+    POWER20:
+        - POWER20
+    POWER50:
+        - POWER50
+    POWER100:
+        - POWER100
+    ORCANET:
+        - F3581
+        - DATAMODE
+        - DATASUBMODEA
+        - POWER50
+        - AMPSTANDBY
+    USB:
+        - USB
+    LSB:
+        - LSB
+    CW:
+        - CW
 
 Commands:
     DATAMODE:
         - K3S
         - MD6;
+    POWER100:
+        - K3S
+        - PC100;
     POWER50:
         - K3S
         - PC050;
     POWER20:
         - K3S
         - PC020;
+    POWER10:
+        - K3S
+        - PC010;
     AMPSTANDBY:
         - KPA500
         - ^OS0;
@@ -70,7 +92,7 @@ Commands:
         - DT0;
     DUMMYLOAD:
         - KAT500
-        - AN2;
+        - AN3;
     ANTENNA1:
         - KAT500
         - AN1;
@@ -83,20 +105,30 @@ Commands:
     TUNE:
         - K3S
         - SWH16;
-    R82:
+    AMPOPERATE:
+        - KPA500
+        - ^OS1;
+    AMPSTANDBY:
+        - KPA500
+        - ^OS0;
+    F3581:
         - K3S
-        - FA00004025000;
+        - FA00003581000;
+    USB:
+        - K3S
+        - MD2;
+    LSB:
+        - K3S
+        - MD1;
+    CW:
+        - K3S
+        - MD3;
 
 Button Labels:
     "&Data Mode":
         - True
         - 1
         - SETDATAMODE
-        - N
-    "&MARS Mode":
-        - True
-        - 2
-        - SETMARS
         - N
     "&Toggle Test":
         - True
@@ -113,23 +145,63 @@ Button Labels:
         - 6
         - ANTENNA1
         - N
-    ATU Tu&ne:
-        - True
-        - 7
-        - ATUTUNE
-        - N
     Tun&e:
         - True
         - 8
         - TUNE
         - N
-    R8&2:
-        - True
-        - 9
-        - R82
-        - N
     "&VOX":
         - True
         - 10
         - VOX
+        - Y
+    "A&mp On":
+        - True
+        - 10
+        - AMPOPERATE
+        - Y
+    "Amp &Off":
+        - True
+        - 10
+        - AMPSTANDBY
+        - Y
+    "&10 Watts":
+        - True
+        - 10
+        - POWER10
+        - Y
+    "&20 Watts":
+        - True
+        - 10
+        - POWER20
+        - Y
+    "&50 Watts":
+        - True
+        - 10
+        - POWER50
+        - Y
+    "1&00 Watts":
+        - True
+        - 10
+        - POWER100
+        - Y
+    "O&rca Net":
+        - True
+        - 10
+        - ORCANET
+        - Y
+    "&LSB":
+        - True
+        - 10
+        - LSB
+        - Y
+    "US&B":
+        - True
+        - 10
+        - USB
+        - Y
+    "&CW":
+        - True
+        - 10
+        - CW
         - Y
