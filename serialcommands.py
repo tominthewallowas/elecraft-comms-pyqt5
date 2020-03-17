@@ -30,7 +30,7 @@ class SerialCommands(object):
     def __init__(self, ports=None):
         '''
         Given a dictionary of device names containing a pipe delimited
-        string of port name and baud rate the  will attempt to open the ports and place in a dictionary.
+        string of port name and baud rate attempt to open the ports and place in a dictionary.
         '''
         self.openports = {}
         if ports:
@@ -39,7 +39,7 @@ class SerialCommands(object):
     def openPorts(self, ports):
         '''
         Given a dictionary of device names containing a pipe delimited
-        string of port name and baud rate function will attempt to open the ports
+        string of port name and baud rate attempt to open the ports
         and place the port reference in a dictionary.
         '''
         for device, port_config in ports.items():
@@ -95,7 +95,12 @@ class SerialCommands(object):
         Given a list containing a named comm port and a command
         write to the port and return the result.
         '''
-        return self.openports[command[0]].write(str.encode(command[1]))
+        try:
+            port = self.openports[command[0]].write(str.encode(command[1]))
+        except:
+            port = None
+        finally:
+            return port
 
     def readPort(self, command, howmany=40):
         '''
@@ -108,30 +113,12 @@ class SerialCommands(object):
 
 
 if __name__ == '__main__':
-    #import elecraft
-    print('__main__')
-    commands = {
-        'DATAMODE': 'COM13|MD6;',
-        'POWER50': 'COM13|PC050;',
-        'DATASUBMODEA': 'COM13|DT0;',
-        'WWV': 'COM13|FA00010000000;',
-        'TESTTOGGLE': 'COM13|SWH18;',
-        'VOX': 'COM13|SWH09;'
-    }
-    command_sequences = {
-        'SETDATAMODE': 'DATAMODE|DATASUBMODEA|POWER50',
-        'WWV': 'WWV',
-        'VOX': 'VOX',
-        'TESTTOGGLE': 'TESTTOGGLE'
-    }
-    logger.debug('In Main')
-    #sc = SerialCommands({'COM13':38400, 'COM4':38400, 'COM6':38400})
-    sc = SerialCommands({'/dev/ttyUSB2': [38400]})
-    #command = ['COM13', 'PC001;']
-    #command = ['COM13', 'MD;']
-    command = ['/dev/ttyUSB2', 'SWH18;']
+    sc = SerialCommands({'K3S': ['/dev/ttyV01', 38400]})
+    #command = ['K3S', 'SWH18;']
+    command = ['K3S', 'FA;']
     sc.runCommand(command)
-    #response = sc.readPort(command)
+    response = sc.readPort(command)
+    print(response)
     #status = elecraft.listifyHexstring(response)
     # print(status)
     sc.closePorts()
