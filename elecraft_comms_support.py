@@ -3,11 +3,11 @@ from PyQt5.QtWidgets import (QPushButton)
 from buttonholder import ButtonHolder
 
 
-def extractSectionInfo(section):
-    sectionDictionary = {}
-    for key, value in section.items():
-        sectionDictionary[key] = value.split('|')
-    return sectionDictionary
+# def extractSectionInfo(section):
+#sectionDictionary = {}
+# for key, value in section.items():
+#sectionDictionary[key] = value.split('|')
+# return sectionDictionary
 
 
 def fillButtonGrid(ui, buttonHolders, max_buttons_per_row):
