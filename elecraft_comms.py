@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import os
 
 from PyQt5.QtWidgets import (QMainWindow, QApplication, QButtonGroup,
                              QPushButton, QLineEdit, QLayout,
@@ -9,6 +10,7 @@ from UI_elecraft_comms import *
 
 import elecraft_comms_support as ecs
 from serialcommands import SerialCommands
+from error_handler import ErrorHandler
 import yaml
 
 
@@ -19,6 +21,7 @@ class ElecraftComms(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.center()
+        eh = ErrorHandler(self.ui)
         config_data = self.loadConfiguration()
         self.buttonHolders = ecs.createButtonHolders(self, config_data['Button Labels'])
         ecs.fillButtonGrid(self.ui, self.buttonHolders, config_data['Misc']['max_buttons_per_row'])
@@ -27,7 +30,7 @@ class ElecraftComms(QMainWindow):
         self.loadRigCombo(config_data['Ports'])
         self.ui.pbSendCommand.clicked.connect(self.sendAdHocCommand)
         self.ui.leCommand.returnPressed.connect(self.sendAdHocCommand)
-        self.sc = SerialCommands()
+        self.sc = SerialCommands(error_handler=eh)
         self.ui.pbQuit.clicked.connect(self.close)
         self.openPorts(config_data['Ports'], self.sc)
         self.show()
@@ -69,6 +72,7 @@ class ElecraftComms(QMainWindow):
 
 
 if __name__ == "__main__":
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     app = QApplication([])
     w = ElecraftComms()
     w.show()
