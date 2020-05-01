@@ -27,11 +27,13 @@ class SerialCommands(object):
     programming objects to send and retrieve serial data.
     '''
 
-    def __init__(self, ports=None):
+    def __init__(self, ports=None, error_handler=None):
         '''
         Given a dictionary of device names containing a pipe delimited
         string of port name and baud rate attempt to open the ports and place in a dictionary.
+        Add an error handler.
         '''
+        self.eh = error_handler
         self.openports = {}
         if ports:
             self.openPorts(ports)
@@ -97,8 +99,9 @@ class SerialCommands(object):
         '''
         try:
             port = self.openports[command[0]].write(str.encode(command[1]))
-        except:
+        except KeyError as err:
             port = None
+            self.eh.handle_error(err)
         finally:
             return port
 
