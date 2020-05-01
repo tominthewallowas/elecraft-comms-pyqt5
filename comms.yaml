@@ -1,12 +1,12 @@
 Ports:
     'K3S':
-        - /dev/ttyV01
+        - /dev/ttyK3S
         - 38400
     'KPA500':
-        - /dev/ttyUSB1
+        - /dev/ttyKPA500
         - 38400
     'KAT500':
-        - /dev/ttyUSB2
+        - /dev/ttyKAT500
         - 38400
 
 Misc:
@@ -125,11 +125,11 @@ Commands:
         - MD3;
 
 Button Labels:
-    "&Data Mode":
+    "O&rca Net":
         - True
-        - 1
-        - SETDATAMODE
-        - N
+        - 10
+        - ORCANET
+        - Y
     "&Toggle Test":
         - True
         - 4
@@ -185,11 +185,11 @@ Button Labels:
         - 10
         - POWER100
         - Y
-    "O&rca Net":
+    "&Data Mode":
         - True
-        - 10
-        - ORCANET
-        - Y
+        - 1
+        - SETDATAMODE
+        - N
     "&LSB":
         - True
         - 10
